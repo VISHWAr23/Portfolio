@@ -267,31 +267,6 @@ const Skills = () => {
             <SkillDetails skill={skills[selectedSkill]} />
           </div>
         </div>
-
-        
-        {/* Notable Achievements */}
-        <motion.div 
-          className="mt-16 p-8 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-xl border border-cyan-400/20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="text-2xl font-bold text-white mb-6 text-center">Recent Achievements</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="text-center">
-              <div className="text-4xl mb-2">🏆</div>
-              <h4 className="text-lg font-semibold text-cyan-400 mb-1">Cryptra 2k25</h4>
-              <p className="text-gray-300 text-sm">1st Prize - Coding Contest</p>
-              <p className="text-gray-400 text-xs">Coimbatore Institute of Technology</p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl mb-2">🏆</div>
-              <h4 className="text-lg font-semibold text-cyan-400 mb-1">Codeathon</h4>
-              <p className="text-gray-300 text-sm">1st Prize - Programming Contest</p>
-              <p className="text-gray-400 text-xs">National Engineering College</p>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </motion.div>
   );

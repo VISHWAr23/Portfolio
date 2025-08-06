@@ -124,12 +124,6 @@ const Home = () => {
       href: 'mailto:vishwarajkumar05@gmail.com', 
       label: 'Email',
       color: 'hover:text-green-400'
-    },
-    { 
-      icon: <FileText size={24} />, 
-      href: '/vishwa-resume.pdf', 
-      label: 'Resume',
-      color: 'hover:text-cyan-400'
     }
   ];
   

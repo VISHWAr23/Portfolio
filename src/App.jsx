@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
@@ -18,7 +17,7 @@ function App() {
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
-      
+
       // Determine which section is in view
       const sections = ['home', 'about', 'skills', 'education', 'projects', 'contact'];
       for (const section of sections) {
@@ -42,29 +41,29 @@ function App() {
       <CursorTrail />
       <ScrollProgress />
       <Navbar activeSection={activeSection} />
-      
-      <main className="container mx-auto px-4">
-        <section id="home" className="min-h-screen flex items-center">
+
+      <main className="container mx-auto px-4 md:px-8 lg:px-16">
+        <section id="home" className="min-h-screen flex flex-col justify-center items-center md:flex-row md:items-center">
           <Home />
         </section>
-        
-        <section id="about" className="min-h-screen flex items-center py-20">
+
+        <section id="about" className="min-h-screen flex flex-col justify-center items-center py-10 md:py-20 md:flex-row md:items-center">
           <About />
         </section>
-        
-        <section id="skills" className="min-h-screen flex items-center py-20">
+
+        <section id="skills" className="min-h-screen flex flex-col justify-center items-center py-10 md:py-20 md:flex-row md:items-center">
           <Skills />
         </section>
-        
-        <section id="education" className="min-h-screen flex items-center py-20">
+
+        <section id="education" className="min-h-screen flex flex-col justify-center items-center py-10 md:py-20 md:flex-row md:items-center">
           <Education />
         </section>
-        
-        <section id="projects" className="min-h-screen flex items-center py-20">
+
+        <section id="projects" className="min-h-screen flex flex-col justify-center items-center py-10 md:py-20 md:flex-row md:items-center">
           <Projects />
         </section>
-        
-        <section id="contact" className="min-h-screen flex items-center py-20">
+
+        <section id="contact" className="min-h-screen flex flex-col justify-center items-center py-10 md:py-20 md:flex-row md:items-center">
           <Contact />
         </section>
       </main>

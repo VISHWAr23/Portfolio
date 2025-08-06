@@ -7,22 +7,18 @@ import {
   MapPin, 
   Code, 
   Coffee, 
-  Heart,
-  User,
-  BookOpen,
   Trophy,
-  Calendar,
-  Clock,
-  Globe
+  Globe,
+  BookOpen
 } from 'lucide-react';
 import profileImage from '../assets/vishwa.jpg';
+import resume from '../assets/Vishwa_resume.pdf';
 
 const About = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
-  // Update time every minute for live timezone display
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
@@ -74,24 +70,10 @@ const About = () => {
     }
   };
 
-  const personalStats = [
-    { icon: <MapPin size={16} />, label: "Location", value: "Virudhunagar, Tamil Nadu" },
-    { icon: <Code size={16} />, label: "Experience", value: "2+ Years Learning" },
-    { icon: <Trophy size={16} />, label: "Status", value: "Open for Opportunities" },
-    { icon: <Globe size={16} />, label: "Languages", value: "English, Tamil" }
-  ];
-
-  const interests = [
-    { icon: <Code size={16} />, name: "Backend Development" },
-    { icon: <Sparkles size={16} />, name: "Blockchain Technology" },
-    { icon: <BookOpen size={16} />, name: "Continuous Learning" },
-    { icon: <Coffee size={16} />, name: "Problem Solving" }
-  ];
 
   const handleDownloadCV = () => {
-    // Create a temporary link to trigger download
     const link = document.createElement('a');
-    link.href = '/path/to/vishwa-resume.pdf'; // Update with actual path
+    link.href = resume; // Update with actual path
     link.download = 'Vishwa_Resume.pdf';
     document.body.appendChild(link);
     link.click();
@@ -100,18 +82,18 @@ const About = () => {
 
   return (
     <motion.section
-      className="w-full min-h-screen flex items-center py-20"
+      className="w-full min-h-screen py-10 flex items-start sm:items-center"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={containerVariants}
     >
-      <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="w-full flex flex-col-reverse lg:flex-row gap-12 md:gap-16 items-center">
         
-        {/* Left Content Section */}
+        {/* Left Content */}
         <motion.div 
           variants={itemVariants} 
-          className="order-2 lg:order-1 space-y-8"
+          className="w-full max-w-xl space-y-8 order-2 lg:order-1"
         >
           {/* Header with animated title */}
           <div className="space-y-4">
@@ -121,12 +103,11 @@ const About = () => {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <Sparkles className="text-cyan-400" size={32} />
-              <h2 className="text-4xl lg:text-5xl font-bold">
+              <h2 className="text-4xl md:text-5xl font-bold">
                 <span className="text-white">About</span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 ml-3">Me</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 ml-2 md:ml-3">Me</span>
               </h2>
             </motion.div>
-            
             <motion.div
               className="h-1 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full"
               initial={{ width: 0 }}
@@ -135,8 +116,9 @@ const About = () => {
             />
           </div>
 
+
           {/* Interactive Tabs */}
-          <div className="space-y-6">
+          <div className="space-y-6 mt-6">
             <div className="flex flex-wrap gap-2">
               {Object.keys(tabData).map((tab) => (
                 <motion.button
@@ -154,8 +136,6 @@ const About = () => {
                 </motion.button>
               ))}
             </div>
-
-            {/* Tab Content */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
@@ -165,11 +145,11 @@ const About = () => {
                 transition={{ duration: 0.3 }}
                 className="space-y-4"
               >
-                <h3 className="text-xl font-semibold text-cyan-400 mb-3">
+                <h3 className="text-lg sm:text-xl font-semibold text-cyan-400 mb-2">
                   {tabData[activeTab].title}
                 </h3>
-                {tabData[activeTab].content.map((paragraph, index) => (
-                  <p key={index} className="text-gray-300 leading-relaxed text-lg">
+                {tabData[activeTab].content.map((paragraph, idx) => (
+                  <p key={idx} className="text-gray-300 leading-relaxed text-base sm:text-lg">
                     {paragraph}
                   </p>
                 ))}
@@ -178,9 +158,9 @@ const About = () => {
           </div>
 
           {/* Action Buttons */}
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
+          <motion.div variants={itemVariants} className="flex flex-wrap gap-4 pt-2">
             <motion.button
-              className="px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-xl font-semibold flex items-center gap-3 relative overflow-hidden group shadow-lg shadow-cyan-500/25"
+              className="px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-xl font-semibold flex items-center gap-3 relative overflow-hidden group shadow-lg shadow-cyan-500/25 w-full sm:w-auto"
               whileHover={{ 
                 scale: 1.05, 
                 boxShadow: "0 0 30px rgba(6, 182, 212, 0.4)" 
@@ -204,7 +184,7 @@ const About = () => {
             </motion.button>
             
             <motion.button
-              className="px-8 py-4 bg-transparent border-2 border-cyan-500 text-cyan-400 rounded-xl font-semibold flex items-center gap-3 relative overflow-hidden group"
+              className="px-6 py-3 sm:px-8 sm:py-4 bg-transparent border-2 border-cyan-500 text-cyan-400 rounded-xl font-semibold flex items-center gap-3 relative overflow-hidden group w-full sm:w-auto"
               whileHover={{ 
                 scale: 1.05, 
                 boxShadow: "0 0 25px rgba(6, 182, 212, 0.3)" 
@@ -224,12 +204,12 @@ const About = () => {
           </motion.div>
         </motion.div>
         
-        {/* Right Image Section - Increased Height */}
+        {/* Right Image Section */}
         <motion.div 
           variants={itemVariants} 
-          className="order-1 lg:order-2 flex justify-center"
+          className="w-full flex justify-center items-center order-1 lg:order-2 mb-8 lg:mb-0"
         >
-          <div className="relative w-80 h-96 md:w-96 md:h-[500px] lg:w-[420px] lg:h-[550px]">
+          <div className="relative w-64 sm:w-80 h-80 sm:h-96 md:w-96 md:h-[500px] lg:w-[420px] lg:h-[550px]">
             {/* Main Image Container */}
             <motion.div
               className="absolute inset-0 rounded-2xl border-2 border-cyan-500/40 p-2 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 backdrop-blur-sm"
@@ -247,7 +227,6 @@ const About = () => {
                 {!isImageLoaded && (
                   <div className="absolute inset-0 bg-gray-800 animate-pulse rounded-xl" />
                 )}
-                
                 {/* Profile Image */}
                 <motion.img
                   src={profileImage}
@@ -261,25 +240,21 @@ const About = () => {
                     transition: 'opacity 0.5s ease-in-out'
                   }}
                 />
-                
                 {/* Overlay Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-xl" />
               </div>
             </motion.div>
-            
-            {/* Floating Elements */}
+            {/* Decorative Corners & Glows */}
             <motion.div
-              className="absolute -top-4 -left-4 w-12 h-12 border-t-3 border-l-3 border-cyan-400 rounded-tl-lg"
+              className="absolute -top-4 -left-4 w-10 h-10 border-t-2 border-l-2 border-cyan-400 rounded-tl-lg"
               animate={{ rotate: [0, 5, 0] }}
               transition={{ duration: 3, repeat: Infinity }}
             />
             <motion.div
-              className="absolute -bottom-4 -right-4 w-12 h-12 border-b-3 border-r-3 border-cyan-400 rounded-br-lg"
+              className="absolute -bottom-4 -right-4 w-10 h-10 border-b-2 border-r-2 border-cyan-400 rounded-br-lg"
               animate={{ rotate: [0, -5, 0] }}
               transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
             />
-            
-            {/* Professional Badge */}
             <motion.div
               className="absolute -top-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg"
               initial={{ y: -20, opacity: 0 }}
@@ -288,13 +263,10 @@ const About = () => {
             >
               Full-Stack Developer
             </motion.div>
-            
             {/* Glow Effects */}
             <div className="absolute -inset-1 rounded-2xl bg-cyan-500 opacity-20 blur-lg -z-10" />
-            <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-cyan-500 rounded-full filter blur-3xl opacity-15 -z-10" />
-            <div className="absolute -top-8 -left-8 w-24 h-24 bg-blue-500 rounded-full filter blur-2xl opacity-10 -z-10" />
-            
-            
+            <div className="absolute -bottom-8 -right-8 w-24 h-24 sm:w-32 sm:h-32 bg-cyan-500 rounded-full filter blur-3xl opacity-15 -z-10" />
+            <div className="absolute -top-8 -left-8 w-16 h-16 sm:w-24 sm:h-24 bg-blue-500 rounded-full filter blur-2xl opacity-10 -z-10" />
           </div>
         </motion.div>
       </div>
